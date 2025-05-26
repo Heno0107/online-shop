@@ -1,6 +1,9 @@
 import { useState , useEffect } from 'react'
 import { Routes , Route } from 'react-router-dom'
 
+import { Layout } from './components'
+import { Home } from './pages'
+
 import './App.css'
 
 function App() {
@@ -13,9 +16,14 @@ function App() {
   .then(data => setProducts(data));
   },[])
 
+  console.log(products)
   return (
     <>
-      
+      <Routes>
+        <Route path='/' element = {<Layout />}>
+        <Route index element = {<Home products = {products}/>}/>
+        </Route>
+      </Routes>
     </>
   )
 }

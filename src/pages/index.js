@@ -1,5 +1,5 @@
 import { Home } from "./home/home";
+import { Basket } from "./basket/basket";
 
 
-
-export {Home}
+export {Home , Basket}

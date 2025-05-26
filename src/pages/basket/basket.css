@@ -1,0 +1,11 @@
+.home {
+    max-width: 1240px;
+    margin: auto;
+    padding: 40px 0;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(5 , 1fr);
+    gap: 16px;
+}

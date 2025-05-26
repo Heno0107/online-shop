@@ -3,7 +3,7 @@ import './layout.css'
 import { Nav } from './nav/nav'
 import { Footer } from './footer/footer'
 
-export function Layout () {
+export function Layout ({}) {
     return (
         <>
         <Nav />

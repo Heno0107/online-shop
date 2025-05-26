@@ -1,0 +1,65 @@
+footer {
+    background-color: black;
+    color: white;
+}
+
+a {
+    font-family: sans-serif;
+}
+
+.footerLinks ul {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    list-style: none;
+}
+
+.footerLinks li {
+    background-color: transparent;
+    &:hover {
+        transform: translateX(0) translateY(0);
+    }
+}
+
+.footerLinks li a {
+    background-color: transparent;
+    text-decoration: none;
+    font-size: 18px;
+    color: gray;
+    transition: 0.4s;
+    &:hover {
+        color: white;
+    }
+}
+
+.footerLinks {
+    padding: 24px 0;
+    border-bottom: 1px solid white;
+}
+
+.footerBottom {
+    padding: 24px 0;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.phone {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.pay {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.payInfo {
+    color: yellow;
+    &:hover {
+        color: yellow;
+        text-decoration: underline;
+    }
+}

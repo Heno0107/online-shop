@@ -1,0 +1,43 @@
+.basketItem {
+    width: 1140px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 12px;
+    background-color: blue;
+}
+
+.basketItem img {
+    max-width: 100px;
+    aspect-ratio: 1;
+}
+
+.deleteBtn {
+    all: unset;
+    color: white;
+    background-color: red;
+    font-size: 24px;
+    padding: 8px;
+    transition: 0.4s;
+    &:hover {
+        background-color: white;
+        color: red;
+    }
+}
+
+.counter {
+    display: flex;
+    gap: 10px;
+}
+
+.counter button {
+    all: unset;
+    color: white;
+    background-color: black;
+    padding: 8px;
+    font-size: 18px;
+    border-radius: 50%;
+    cursor: pointer;
+}

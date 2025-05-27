@@ -1,16 +1,26 @@
-import './basket.css'
+import { useNavigate } from 'react-router-dom'
 
 import { Product } from '../product/product'
+import { BasketItem } from '../basketItem/basketItem'
 
-export function Basket ({basket , setBasket , add}) {
+import './basket.css'
 
+export function Basket ({basket , setBasket , add , remove}) {
+
+    const navigate = useNavigate()
     return <div className="home">
-            {/* <SimpleSlider products = {products}/> */}
 
-            <div className="products">
+            <button onClick={() => navigate(-1)} className='goBack'>
+                Go Back
+            </button>
+
+            {
+                basket.length ? '' : <h2 className='empty'>Basket Is Empty</h2>
+            }
+            <div className="basket">
                 {
                     basket.map((prod) => {
-                        return <Product key = {prod.id} prod = {prod} basket = {basket} setBasket = {setBasket} add = {add}/>
+                        return <BasketItem key = {prod.id} prod = {prod} basket = {basket} remove = {remove}/>
                     })
                 }
             </div>

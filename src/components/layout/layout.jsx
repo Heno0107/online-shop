@@ -3,10 +3,10 @@ import './layout.css'
 import { Nav } from './nav/nav'
 import { Footer } from './footer/footer'
 
-export function Layout ({}) {
+export function Layout ({basket}) {
     return (
         <>
-        <Nav />
+        <Nav basket = {basket} />
         <Outlet/>
         <Footer />
         </>

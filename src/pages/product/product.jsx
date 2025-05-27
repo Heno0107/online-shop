@@ -14,7 +14,6 @@ export function Product ({prod , basket , setBasket , add}) {
                 <NavLink to={`/${prod.id}`}><h3>{prod.title}</h3></NavLink>
                 <p>{prod.price}$</p>
                 <button onClick={() => add(prod)}>Add To Basket</button>
-                {console.log(basket)}
             </div>
         </div>
     )

@@ -13,26 +13,47 @@ function App() {
   const [basket , setBasket] = useState([])
 
   const add = (prod) => {
+    if(basket.find((bask) => bask.id === prod.id)){
+      basket.forEach((bask) => {
+        if(bask.id === prod.id) {
+          bask.count++
+          bask.initPrice += bask.price
+        }
+      })
+    } else {
       setBasket([...basket , prod])
+    }
+  }
+
+  const remove = (id) => {
+        setBasket(basket.filter((bask) => bask.id !== id))
   }
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
   .then(response => response.json())
-  .then(data => setProducts(data));
+  .then(data => data.map((el) => {
+    return {
+      ...el ,
+      count : 1 ,
+      initPrice : el.price
+    }
+  }))
+  .then(data => setProducts(data))
   },[])
 
   console.log(products)
+
   return (
     <>
       <Routes>
-        <Route path='/' element = {<Layout />}>
+        <Route path='/' element = {<Layout basket = {basket}/>}>
         <Route index element = {<Home products = {products} basket = {basket} setBasket = {setBasket} add = {add}/>}/>
         <Route path='/men' element = {<Men products = {products} basket = {basket} setBasket = {setBasket} add = {add}/>}/>
         <Route path='/jewelery' element = {<Jewelery products = {products} basket = {basket} setBasket = {setBasket} add = {add}/>}/>
         <Route path='/electronics' element = {<Electronics products = {products} basket = {basket} setBasket = {setBasket} add = {add}/>}/>
         <Route path='/women' element = {<Women products = {products} basket = {basket} setBasket = {setBasket} add = {add}/>}/>
-        <Route path='/basket' element = {<Basket basket = {basket} setBasket = {setBasket} add = {add}/>}/>
+        <Route path='/basket' element = {<Basket basket = {basket} setBasket = {setBasket} add = {add} remove = {remove}/>}/>
         </Route>
       </Routes>
     </>

@@ -9,3 +9,41 @@
     grid-template-columns: repeat(5 , 1fr);
     gap: 16px;
 }
+
+.goBack {
+    all: unset;
+    padding: 8px;
+    margin-bottom: 12px;
+    font-size: 18px;
+    font-family: sans-serif;
+    color: blue;
+    border: blue solid 1px;
+    border-radius: 20px;
+    transition: 0.4s;
+    cursor: pointer;
+    &:hover {
+        background-color: blue;
+        color: white;
+    }
+}
+
+.empty {
+    text-align: center;
+    font-size: 28px;
+    color: blue;
+    text-shadow: blue 0 0 18px;
+}
+.basket {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.basket h3 {
+    font-size: 24px;
+}
+
+.basket span {
+    font-size: 24px;
+}

@@ -37,6 +37,8 @@ nav {
     }
 }
 
-.active {
-    color: red;
+sup {
+    background-color: red;
+    padding: 4px;
+    border-radius: 120px;
 }

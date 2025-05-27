@@ -26,6 +26,14 @@ function App() {
   }
 
   const remove = (id) => {
+
+    basket.forEach((bask) => {
+      if(bask.id === id){
+        bask.count = 1
+        bask.initPrice = bask.price
+      }
+    })
+
         setBasket(basket.filter((bask) => bask.id !== id))
   }
 
@@ -42,7 +50,6 @@ function App() {
   .then(data => setProducts(data))
   },[])
 
-  console.log(products)
 
   return (
     <>

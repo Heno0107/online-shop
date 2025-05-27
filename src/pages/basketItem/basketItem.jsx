@@ -5,6 +5,7 @@ import { useState } from "react";
 import './basketItem.css'
 
 export function BasketItem ({prod , basket , remove}) {
+
     const [count , setCount] = useState(prod.count)
     const [price , setPrice] = useState(prod.initPrice)
 

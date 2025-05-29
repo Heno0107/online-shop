@@ -1,0 +1,39 @@
+.form {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.form input {
+    margin: auto;
+    font-size: 16px;
+    padding: 12px 8px;
+}
+
+.inputs {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 36px;
+}
+
+.submit {
+    display: flex;
+    justify-content: center;
+}
+
+.loginBtn {
+    all: unset;
+    font-family: sans-serif;
+    background-color: blue;
+    color: white;
+    font-size: 18px;
+    padding: 8px 24px;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+.goBack {
+    height: 20px;
+    margin: 0 40px;
+}

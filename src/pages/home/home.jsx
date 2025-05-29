@@ -1,7 +1,7 @@
 // import { SimpleSlider } from './slider/slider'
 
 import { useState } from 'react'
-import { Product } from '../product/product'
+import { Product } from '../../components/'
 import './home.css'
 
 export function Home ({products , basket , setBasket , add}) {

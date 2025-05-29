@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import './basketItem.css'
 
-export function BasketItem ({prod , basket , remove}) {
+export function BasketItem ({prod , basket , remove , totalPrice}) {
 
     const [count , setCount] = useState(prod.count)
     const [price , setPrice] = useState(prod.initPrice)
@@ -15,6 +15,7 @@ export function BasketItem ({prod , basket , remove}) {
             prod.count--
             setPrice(price - prod.price)
             prod.initPrice -= prod.price
+            totalPrice()
         }
     }
 
@@ -24,6 +25,7 @@ export function BasketItem ({prod , basket , remove}) {
             prod.count++
             setPrice(price + prod.price)
             prod.initPrice += prod.price
+            totalPrice()
         }
     }
 
@@ -40,9 +42,9 @@ export function BasketItem ({prod , basket , remove}) {
                 <button onClick = {plus}>+</button>
             </div>
 
-            <h3>{price}$</h3>
+            <h3>{+price.toFixed(2)}$</h3>
 
-            <button className="deleteBtn" onClick={() => remove(prod.id)}><MdDelete /></button>
+            <button className="deleteBtn" onClick={() => remove(prod.id , totalPrice)}><MdDelete /></button>
         </div>
     )
 }

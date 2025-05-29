@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { Product } from '../product/product'
+import { Product } from '../../components/product/product'
 
 import './women.css'
 

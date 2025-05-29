@@ -3,7 +3,7 @@ import { FaBasketShopping } from "react-icons/fa6";
 
 import './nav.css'
 
-export function Nav ({basket}) {
+export function Nav ({basket , authorizated}) {
     return (
         <nav>
             <img src="https://static.vecteezy.com/system/resources/thumbnails/010/842/736/small_2x/online-shopping-text-banner-marketing-pop-art-banner-design-png.png" alt="" className='logo'/>
@@ -16,8 +16,11 @@ export function Nav ({basket}) {
                 <NavLink to={`/women`}><span>WOMEN'S CLOTHING</span></NavLink>
             </div>
 
-            <NavLink to={`/basket`}><FaBasketShopping className='basket'/><sup>{basket.length}</sup></NavLink>
-
+            <div className="navFlex">
+                <NavLink to={`/basket`}><FaBasketShopping className='basket'/><sup>{basket.length}</sup></NavLink>
+                {authorizated ? '' : <NavLink to={`/login`} className={'login'}>LOGIN</NavLink>}
+            </div>
+            
         </nav>
     )
 }

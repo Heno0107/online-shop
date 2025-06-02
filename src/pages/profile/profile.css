@@ -1,0 +1,46 @@
+.profile {
+    height: 400px;
+    background-color: white;
+    padding: 20px 60px;
+    box-shadow: black 0 0 12px;
+    text-align: center;
+    max-width: 940px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.profileFlex {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+.profile h2 {
+    color: brown;
+    font-size: 32px;
+    text-shadow: brown 0 0 12px;
+}
+
+.profile h3 {
+    color: blue;
+    font-family: sans-serif;
+}
+
+.profile button {
+    all: unset;
+    background-color: red;
+    font-family: sans-serif;
+    color: white;
+    font-size: 18px;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.4s;
+    &:hover {
+        background-color: white;
+        color: red;
+        outline: 1px solid red;
+    }
+}

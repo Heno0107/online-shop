@@ -1,0 +1,49 @@
+.cardFlex {
+    max-width: 1340px;
+    margin: auto;
+    padding: 40px 0;
+    .goBack {
+        margin: 20px 0;
+    }
+}
+
+.priceFlex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.priceFlex button{
+        border: none;
+        border-radius: 12px;
+        padding: 12px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: 0.4s;
+        &:hover {
+            color: white;
+            background-color: black;
+        }
+}
+
+.productCard {
+    display: flex;
+    background-color: blanchedalmond;
+    text-align: center;
+    padding: 12px;
+}
+
+.infoDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 0;
+    h2 {
+        font-size: 36px;
+        color: brown;
+    }
+    span {
+        color: brown;
+        font-size: 24px;
+    }
+}

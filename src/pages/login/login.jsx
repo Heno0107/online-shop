@@ -1,20 +1,14 @@
 import { Formik , Form , Field } from 'formik'
+import { useState } from 'react'
 import {  useNavigate } from 'react-router-dom'
 
 import './login.css'
 
-export function Login ({users , isLogin}) {
+
+export function Login ({users , isLogin , checkLogin}) {
+
     const navigate = useNavigate()
     
-    const checkLogin = (users , values) => {
-        const user = users.find((user) => user.email === values.email)
-        if(user) {
-            if(user.password === values.password){
-                isLogin(user.name)
-            }
-        }
-    }
-
     return (
     <div className="form">
             <button onClick={() => navigate(-1)} className='goBack'>
@@ -38,5 +32,4 @@ export function Login ({users , isLogin}) {
 
     </div>
     )
-
 }

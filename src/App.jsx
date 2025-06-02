@@ -1,13 +1,15 @@
 import { useState , useEffect, useRef } from 'react'
-import { Routes , Route } from 'react-router-dom'
+import { Routes , Route , useNavigate } from 'react-router-dom'
 
 import { Layout } from './components'
-import { Basket, Electronics, Home, Jewelery, Men, Women, Login } from './pages'
+import { Basket, Electronics, Home, Jewelery, Men, Women, Login , Profile , ProductCard } from './pages'
 
 import './App.css'
 
 function App() {
-  const bool = useRef(true)
+  const navigate = useNavigate()
+
+  const bool = useRef(false)
 
   const [products , setProducts] = useState([])
 
@@ -20,13 +22,13 @@ function App() {
     {name : 'Anna' , email : 'anna@gmail.com' , password : '1234'}
   ])
 
-  if(bool.current){
-    useEffect(() => {
+  useEffect(() => {
+    if(bool.current){
       localStorage.setItem('basket' , JSON.stringify(basketData))
-    },[])
-  }
+    }
+    bool.current = true
 
-  // localStorage.setItem('basket' , JSON.stringify(basketData))
+  },[basketData])
 
   const add = (prod) => {
     if(basketData.find((bask) => bask.id === prod.id)){
@@ -37,12 +39,8 @@ function App() {
         }
       })
     } else {
-      const newBasket = [...basketData , prod]
-      setBasketData(newBasket)
+      setBasketData([...basketData , prod])
       console.log(basketData)
-      if(bool.current) {
-        localStorage.setItem('basket' , JSON.stringify(newBasket))
-      }
     }
   }
 
@@ -51,15 +49,11 @@ function App() {
     basketData.forEach((bask) => {
       if(bask.id === id){
         bask.count = 1
-        bask.initPrice = 0
+        bask.initPrice = bask.price
       }
     })
     setBasketData(basketData.filter((bask) => bask.id !== id))
     totalPrice()
-    if(bool.current) {
-      console.log(basketData)
-      localStorage.setItem('basket' , JSON.stringify(basketData))
-    }
   }
 
   const removeAll = (setTotal) => {
@@ -68,17 +62,28 @@ function App() {
       bask.count = 1
       bask.initPrice = bask.price
     })
-    const newBasket = []
-    setBasketData(newBasket)
-    if(bool.current) {
-      localStorage.setItem('basket' , JSON.stringify(newBasket))
-      setTotal(0)
-    }
+    setBasketData([])
+    setTotal(0)
   }
 
-  const isLogin = (userName) => {
-    setAuthorizated(userName)
+  const isLogin = (user) => {
+    setAuthorizated(user)
   }
+
+  const checkLogin = (users , values) => {
+    const user = users.find((user) => user.email === values.email)
+    if(user) {
+        if(user.password === values.password){
+            isLogin(user)
+            navigate('/profile')
+        }
+    }
+ }
+
+ const logOut = () => {
+  setAuthorizated('')
+  navigate('/')
+ }
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
@@ -93,19 +98,20 @@ function App() {
   .then(data => setProducts(data))
   },[])
 
-  const basket = JSON.parse(localStorage.getItem('basket'))
 
   return (
     <>
       <Routes>
-        <Route path='/' element = {<Layout basket = {basket} authorizated = {authorizated}/>}>
-        <Route index element = {<Home products = {products} basket = {basket} setBasket = {setBasketData} add = {add}/>}/>
-        <Route path='/men' element = {<Men products = {products} basket = {basket} setBasket = {setBasketData} add = {add}/>}/>
-        <Route path='/jewelery' element = {<Jewelery products = {products} basket = {basket} setBasket = {setBasketData} add = {add}/>}/>
-        <Route path='/electronics' element = {<Electronics products = {products} basket = {basket} setBasket = {setBasketData} add = {add}/>}/>
-        <Route path='/women' element = {<Women products = {products} basket = {basket} setBasket = {setBasketData} add = {add}/>}/>
-        <Route path='/basket' element = {<Basket basket = {basket}  remove = {remove} removeAll = {removeAll}/>}/>
-        <Route path='/login' element = {<Login users = {users} isLogin = {isLogin}/>}/>
+        <Route path='/' element = {<Layout basket = {JSON.parse(localStorage.getItem('basket'))} authorizated = {authorizated}/>}>
+        <Route index element = {<Home products = {products} basket = {basketData} setBasket = {setBasketData} add = {add}/>}/>
+        <Route path='/men' element = {<Men products = {products} basket = {basketData} setBasket = {setBasketData} add = {add}/>}/>
+        <Route path='/jewelery' element = {<Jewelery products = {products} basket = {basketData} setBasket = {setBasketData} add = {add}/>}/>
+        <Route path='/electronics' element = {<Electronics products = {products} basket = {basketData} setBasket = {setBasketData} add = {add}/>}/>
+        <Route path='/women' element = {<Women products = {products} basket = {basketData} setBasket = {setBasketData} add = {add}/>}/>
+        <Route path='/basket' element = {<Basket basket = {JSON.parse(localStorage.getItem('basket'))}  remove = {remove} removeAll = {removeAll}/>}/>
+        <Route path='/login' element = {<Login users = {users} isLogin = {isLogin} checkLogin={checkLogin}/>}/>
+        <Route path='/profile' element = {<Profile authorizated = {authorizated} logOut = {logOut}/>}/>
+        <Route path=':id' element = {<ProductCard products = {products} add = {add}/>} />
         </Route>
       </Routes>
     </>

@@ -4,9 +4,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: white;
+    color: brown;
     padding: 12px;
-    background-color: blue;
+    background-color: blanchedalmond;
 }
 
 .basketItem img {

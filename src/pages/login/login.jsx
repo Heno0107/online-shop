@@ -10,7 +10,7 @@ export function Login ({users , isLogin}) {
         const user = users.find((user) => user.email === values.email)
         if(user) {
             if(user.password === values.password){
-                isLogin()
+                isLogin(user.name)
             }
         }
     }

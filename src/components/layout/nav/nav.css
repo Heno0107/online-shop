@@ -7,7 +7,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 20px 36px;
-    background-color: blue;
+    background-color: blanchedalmond;
     position: sticky;
     top: 0;
     z-index: 999;
@@ -24,7 +24,7 @@ nav {
     text-decoration: none;
     transition: 0.4s;
     &:hover {
-        color: red;
+        color:brown
     }
 }
 
@@ -33,7 +33,7 @@ nav {
     color: black;
     transition: 0.4s;
     &:hover {
-        color: red
+        color: brown
     }
 }
 
@@ -55,6 +55,15 @@ sup {
     text-decoration: none;
     transition: 0.4s;
     &:hover {
-        color: white;
+        color: brown
     }
+}
+
+.navFlex h2 {
+    color: brown;
+    font-size: 32px;
+}
+
+.navFlex a {
+    text-decoration: none;
 }

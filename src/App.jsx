@@ -1,4 +1,4 @@
-import { useState , useEffect } from 'react'
+import { useState , useEffect, useRef } from 'react'
 import { Routes , Route } from 'react-router-dom'
 
 import { Layout } from './components'
@@ -7,6 +7,7 @@ import { Basket, Electronics, Home, Jewelery, Men, Women, Login } from './pages'
 import './App.css'
 
 function App() {
+  const bool = useRef(true)
 
   const [products , setProducts] = useState([])
 
@@ -19,31 +20,46 @@ function App() {
     {name : 'Anna' , email : 'anna@gmail.com' , password : '1234'}
   ])
 
+  if(bool.current){
+    useEffect(() => {
+      localStorage.setItem('basket' , JSON.stringify(basketData))
+    },[])
+  }
 
+  // localStorage.setItem('basket' , JSON.stringify(basketData))
 
   const add = (prod) => {
-    if(basket.find((bask) => bask.id === prod.id)){
-      basket.forEach((bask) => {
+    if(basketData.find((bask) => bask.id === prod.id)){
+      basketData.forEach((bask) => {
         if(bask.id === prod.id) {
           bask.count++
           bask.initPrice += bask.price
         }
       })
     } else {
-      setBasketData([...basket , prod])
+      const newBasket = [...basketData , prod]
+      setBasketData(newBasket)
+      console.log(basketData)
+      if(bool.current) {
+        localStorage.setItem('basket' , JSON.stringify(newBasket))
+      }
     }
   }
 
   const remove = (id , totalPrice) => {
 
-    basket.forEach((bask) => {
+    basketData.forEach((bask) => {
       if(bask.id === id){
         bask.count = 1
         bask.initPrice = 0
       }
     })
-    setBasketData(basket.filter((bask) => bask.id !== id))
+    setBasketData(basketData.filter((bask) => bask.id !== id))
     totalPrice()
+    if(bool.current) {
+      console.log(basketData)
+      localStorage.setItem('basket' , JSON.stringify(basketData))
+    }
   }
 
   const removeAll = (setTotal) => {
@@ -52,12 +68,16 @@ function App() {
       bask.count = 1
       bask.initPrice = bask.price
     })
-    setBasketData([])    
-    setTotal(0)
+    const newBasket = []
+    setBasketData(newBasket)
+    if(bool.current) {
+      localStorage.setItem('basket' , JSON.stringify(newBasket))
+      setTotal(0)
+    }
   }
 
-  const isLogin = () => {
-    setAuthorizated(true)
+  const isLogin = (userName) => {
+    setAuthorizated(userName)
   }
 
   useEffect(() => {
@@ -73,8 +93,6 @@ function App() {
   .then(data => setProducts(data))
   },[])
 
-  localStorage.setItem('basket' , JSON.stringify(basketData))
-    
   const basket = JSON.parse(localStorage.getItem('basket'))
 
   return (

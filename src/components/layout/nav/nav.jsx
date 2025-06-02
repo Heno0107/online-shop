@@ -18,7 +18,7 @@ export function Nav ({basket , authorizated}) {
 
             <div className="navFlex">
                 <NavLink to={`/basket`}><FaBasketShopping className='basket'/><sup>{basket.length}</sup></NavLink>
-                {authorizated ? '' : <NavLink to={`/login`} className={'login'}>LOGIN</NavLink>}
+                {authorizated ? <NavLink to={'/profile'}><h2>@{authorizated}</h2></NavLink> : <NavLink to={`/login`} className={'login'}>LOGIN</NavLink>}
             </div>
             
         </nav>

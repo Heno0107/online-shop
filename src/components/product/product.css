@@ -16,7 +16,7 @@
     text-align: center;
     p {
         font-size: 28px;
-        color: red;
+        color: brown;
     }
     a {
         text-decoration: none;
@@ -37,7 +37,7 @@
 }
 
 .product {
-    background-color: blue;
+    background-color: blanchedalmond;
     padding: 8px;
     transition: 0.4s;
     &:hover {

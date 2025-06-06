@@ -1,8 +1,13 @@
+import { useContext } from 'react'
 import { useParams , useNavigate} from 'react-router-dom'
+
+import { myContext } from '../../context'
 
 import './productCard.css'
 
-export function ProductCard ({products , add}) {
+export function ProductCard () {
+    const {products , add} = useContext(myContext)
+
     const {id} = useParams()
     const navigate = useNavigate()
 

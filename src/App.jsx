@@ -3,6 +3,7 @@ import { Routes , Route , useNavigate } from 'react-router-dom'
 
 import { Layout } from './components'
 import { Basket, Electronics, Home, Jewelery, Men, Women, Login , Profile , ProductCard } from './pages'
+import { myContext } from './context'
 
 import './App.css'
 
@@ -98,22 +99,26 @@ function App() {
   .then(data => setProducts(data))
   },[])
 
-
   return (
     <>
-      <Routes>
-        <Route path='/' element = {<Layout basket = {JSON.parse(localStorage.getItem('basket'))} authorizated = {authorizated}/>}>
-        <Route index element = {<Home products = {products} basket = {basketData} setBasket = {setBasketData} add = {add}/>}/>
-        <Route path='/men' element = {<Men products = {products} basket = {basketData} setBasket = {setBasketData} add = {add}/>}/>
-        <Route path='/jewelery' element = {<Jewelery products = {products} basket = {basketData} setBasket = {setBasketData} add = {add}/>}/>
-        <Route path='/electronics' element = {<Electronics products = {products} basket = {basketData} setBasket = {setBasketData} add = {add}/>}/>
-        <Route path='/women' element = {<Women products = {products} basket = {basketData} setBasket = {setBasketData} add = {add}/>}/>
-        <Route path='/basket' element = {<Basket basket = {JSON.parse(localStorage.getItem('basket'))}  remove = {remove} removeAll = {removeAll}/>}/>
-        <Route path='/login' element = {<Login users = {users} isLogin = {isLogin} checkLogin={checkLogin}/>}/>
-        <Route path='/profile' element = {<Profile authorizated = {authorizated} logOut = {logOut}/>}/>
-        <Route path=':id' element = {<ProductCard products = {products} add = {add}/>} />
-        </Route>
-      </Routes>
+      
+        <myContext.Provider value={{basket : JSON.parse(localStorage.getItem('basket')) , authorizated , products , basketData , setBasket : setBasketData , add , remove , removeAll , users , isLogin , checkLogin , logOut}}>
+          <Routes>
+            <Route path='/' element = {<Layout/>}>
+            <Route index element = {<Home/>}/>
+            <Route path='/men' element = {<Men />}/>
+            <Route path='/jewelery' element = {<Jewelery />}/>
+            <Route path='/electronics' element = {<Electronics />}/>
+            <Route path='/women' element = {<Women />}/>
+            <Route path='/basket' element = {<Basket />}/>
+            <Route path='/login' element = {<Login />}/>
+            <Route path='/profile' element = {<Profile />}/>
+            <Route path=':id' element = {<ProductCard />} />
+            <Route path='/basket/:id' element = {<ProductCard />}/>
+            </Route>
+          </Routes>
+        </myContext.Provider>
+      
     </>
   )
 }

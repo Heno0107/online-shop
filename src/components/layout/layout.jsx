@@ -1,12 +1,14 @@
 import { Outlet } from 'react-router-dom'
-import './layout.css'
-import { Nav } from './nav/nav'
-import { Footer } from './footer/footer'
 
-export function Layout ({basket , authorizated}) {
+import { Nav } from '../nav/nav'
+import { Footer } from '../footer/footer'
+
+import './layout.css'
+
+export function Layout () {
     return (
         <>
-        <Nav basket = {basket} authorizated = {authorizated}/>
+        <Nav/>
         <Outlet/>
         <Footer />
         </>

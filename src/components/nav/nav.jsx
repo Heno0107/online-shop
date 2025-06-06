@@ -1,9 +1,14 @@
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom'
 import { FaBasketShopping } from "react-icons/fa6";
 
+import { myContext } from '../../context';
+
 import './nav.css'
 
-export function Nav ({basket , authorizated}) {
+export function Nav () {
+    const {basket , authorizated} = useContext(myContext)
+
     return (
         <nav>
             <img src="https://static.vecteezy.com/system/resources/thumbnails/010/842/736/small_2x/online-shopping-text-banner-marketing-pop-art-banner-design-png.png" alt="" className='logo'/>

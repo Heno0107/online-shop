@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 
 import { Product } from '../../components/product/product'
+import { myContext } from '../../context'
 
 import './jewelery.css'
 
-export function Jewelery ({products , basket , setBasket , add}) {
+export function Jewelery () {
+    const {products , add} = useContext(myContext)
     const [jew , setJew] = useState(products.filter((prod) => prod.category === 'jewelery'))
 
     return (
@@ -12,7 +14,7 @@ export function Jewelery ({products , basket , setBasket , add}) {
         <div className="products">
             {
                 jew.map((prod) => {
-                    return <Product key = {prod.id} prod = {prod} basket = {basket} setBasket = {setBasket} add = {add}/>
+                    return <Product key = {prod.id} prod = {prod} add = {add}/>
                 })
             }
         </div>

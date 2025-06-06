@@ -3,6 +3,7 @@ import { MdDelete } from "react-icons/md";
 import { useState } from "react";
 
 import './basketItem.css'
+import { NavLink } from "react-router-dom";
 
 export function BasketItem ({prod , basket , remove , totalPrice}) {
 
@@ -34,7 +35,7 @@ export function BasketItem ({prod , basket , remove , totalPrice}) {
         <div className="basketItem">
             <img src={prod.image} alt="" />
 
-            <h3>{prod.title}</h3>
+            <NavLink to={`${prod.id}`}><h3>{prod.title}</h3></NavLink>
 
             <div className="counter">
                 <button onClick={minus}>-</button>

@@ -1,9 +1,8 @@
-import { useEffect } from 'react'
-
-import './product.css'
 import { NavLink } from 'react-router-dom'
 
-export function Product ({prod , basket , setBasket , add}) {
+import './product.css'
+
+export function Product ({prod , add}) {
     return (
         <div className="product">
             <div className='imgDiv'>

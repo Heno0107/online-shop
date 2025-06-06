@@ -1,8 +1,12 @@
+import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+import { myContext } from '../../context'
 
 import './profile.css'
 
-export function Profile ({authorizated , logOut}) {
+export function Profile () {
+    const {authorizated , logOut} = useContext(myContext)
     const navigate = useNavigate()
 
     return (

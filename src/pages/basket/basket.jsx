@@ -1,12 +1,13 @@
+import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { BasketItem } from '../../components/'
+import { myContext } from '../../context'
 
 import './basket.css'
-import { useState } from 'react'
 
-export function Basket ({basket ,  remove , removeAll}) {
-
+export function Basket () {
+    const {basket , remove , removeAll} = useContext(myContext)
     const [total , setTotal] = useState(basket.reduce((sum , bask) => sum + bask.initPrice , 0))
 
     function totalPrice () {
@@ -29,17 +30,16 @@ export function Basket ({basket ,  remove , removeAll}) {
             </button>
         </div>
 
-
             {
                 basket.length ? '' : <h2 className='empty'>Basket Is Empty</h2>
             }
+
             <div className="basket">
                 {
                     basket.map((prod) => {
                         return <BasketItem key = {prod.id} prod = {prod} basket = {basket} remove = {remove} totalPrice = {totalPrice}/>
                     })
                 }
-
                 <span className='buy'>BUY ({total.toFixed(2)}$)</span>
             </div>
         </div>

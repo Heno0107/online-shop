@@ -9,6 +9,10 @@
     background-color: blanchedalmond;
 }
 
+.basketItem a {
+    color: black;
+    text-decoration: none;
+}
 .basketItem img {
     max-width: 100px;
     aspect-ratio: 1;

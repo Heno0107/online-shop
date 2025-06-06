@@ -1,12 +1,13 @@
 import { Formik , Form , Field } from 'formik'
-import { useState } from 'react'
-import {  useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import { myContext } from '../../context'
 
 import './login.css'
 
-
-export function Login ({users , isLogin , checkLogin}) {
-
+export function Login () {
+    const {users , checkLogin} = useContext(myContext)
     const navigate = useNavigate()
     
     return (

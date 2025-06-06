@@ -1,11 +1,13 @@
 // import { SimpleSlider } from './slider/slider'
 
-import { useState } from 'react'
+import { useContext } from 'react'
 import { Product } from '../../components/'
+import { myContext } from '../../context'
+
 import './home.css'
 
-export function Home ({products , basket , setBasket , add}) {
-
+export function Home () {
+    const {products , add} = useContext(myContext)
 
     return (
         <div className="home">
@@ -14,7 +16,7 @@ export function Home ({products , basket , setBasket , add}) {
             <div className="products">
                 {
                     products.map((prod) => {
-                        return <Product key = {prod.id} prod = {prod} basket = {basket} setBasket = {setBasket} add = {add}/>
+                        return <Product key = {prod.id} prod = {prod} add = {add}/>
                     })
                 }
             </div>
